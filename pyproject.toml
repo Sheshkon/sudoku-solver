@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "sudoku-api"
+version = "0.1.0"
+description = ""
+authors = ["Alexei <sheskoalexei@gmail.com>"]
+readme = "README.md"
+packages = [{include = "sudoku_api"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9, <3.11"
+opencv-python = "^4.6.0.66"
+keras = "^2.10.0"
+tensorflow = "^2.10.0"
+python-dotenv = "^0.21.0"
+selenium = "^4.6.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
