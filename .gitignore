@@ -1,2 +1,8 @@
 venv
 .idea
+__pycache__
+logs
+.env
+chromedriver
+training.py
+tests
