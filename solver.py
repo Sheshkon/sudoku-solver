@@ -10,14 +10,14 @@ def isSafe(grid, row, col, num):
     # in the similar row , we
     # return false
     for x in range(9):
-        if grid[row][x] == num:
+        if grid[row, x] == num:
             return False
 
     # Check if we find the same num in
     # the similar column , we
     # return false
     for x in range(9):
-        if grid[x][col] == num:
+        if grid[x, col] == num:
             return False
 
     # Check if we find the same num in
@@ -27,7 +27,7 @@ def isSafe(grid, row, col, num):
     startCol = col - col % 3
     for i in range(3):
         for j in range(3):
-            if grid[i + startRow][j + startCol] == num:
+            if grid[i + startRow, j + startCol] == num:
                 return False
     return True
 
@@ -37,7 +37,7 @@ def isSafe(grid, row, col, num):
 # such a way to meet the requirements for
 # Sudoku solution (non-duplication across rows,
 # columns, and boxes) */
-def solveSudoku(grid, row, col):
+def solveSudoku(grid, row=0, col=0):
     # Check if we have reached the 8th
     # row and 9th column (0
     # indexed matrix) , we are
@@ -56,7 +56,7 @@ def solveSudoku(grid, row, col):
     # Check if the current position of
     # the grid already contains
     # value >0, we iterate for next column
-    if grid[row][col] > 0:
+    if grid[row, col] > 0:
         return solveSudoku(grid, row, col + 1)
     for num in range(1, N + 1, 1):
 
@@ -72,7 +72,7 @@ def solveSudoku(grid, row, col):
             # and assuming our assigned
             # num in the position
             # is correct
-            grid[row][col] = num
+            grid[row, col] = num
 
             # Checking for next possibility with next
             # column
@@ -84,6 +84,6 @@ def solveSudoku(grid, row, col):
         # was wrong , and we go for
         # next assumption with
         # diff num value
-        grid[row][col] = 0
+        grid[row, col] = 0
     return False
 

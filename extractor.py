@@ -2,8 +2,7 @@ import math
 
 import cv2
 from recognition import predict
-
-from solver import solveSudoku
+import numpy as np
 
 
 def extract_board_img(image):
@@ -14,6 +13,7 @@ def extract_board_img(image):
     cnts = cnts[0] if len(cnts) == 2 else cnts[1]
     cnt = sorted(cnts, key=cv2.contourArea, reverse=True)[0]
     x, y, w, h = cv2.boundingRect(cnt)
+
     return image[y:y + h, x:x + w]
 
 
@@ -26,21 +26,7 @@ def extract_cells(img):
         row = list()
         for j in range(9):
             cell = img[i*width+delta: i*width + width-delta, j*width+delta: j*width + width-delta]
-            # cv2.imwrite(f'tests/cropped/test{i}_{j}.jpg', cell)
             row.append(predict(cell))
         matrix_board.append(row)
-    return matrix_board
 
-
-def print_board(board):
-    for i in range(9):
-        if i in (3, 6):
-            print(14 * '—— ')
-        for j in range(9):
-            if j in (3, 6):
-                print('|', end='\t')
-            print(board[i][j], end='\t')
-        print()
-
-
-
+    return np.asarray(matrix_board, dtype=int)
